@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.springframework</groupId>
 	<artifactId>spring-pet-clinic</artifactId>
-	<version>y</version>
+	<version>0.0.1-SNAPSHOT</version>
 	
 	<modules>
     	<module>pet-clinic-data</module>
@@ -39,11 +39,12 @@
                 	<autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
-        </plugins></pluginManagement>
+        </plugins>
+        </pluginManagement>
     </build>
 
 	<scm>
-        <developerConnection>scm:git:https://github.com/springframeworkguru/sfg-pet-clinic.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/Afrin-22/spring-pet-clinic.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
 </project>
