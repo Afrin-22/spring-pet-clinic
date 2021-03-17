@@ -1,6 +1,6 @@
 package org.springframework.petclinicdata.model;
 
-public class Person {
+public class Person extends BaseEntity {
 
 	private String firstName;
 	
