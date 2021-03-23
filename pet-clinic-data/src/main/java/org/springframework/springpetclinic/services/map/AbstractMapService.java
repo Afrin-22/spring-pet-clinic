@@ -1,9 +1,12 @@
-package org.springframework.petclinicdata.services.map;
+package org.springframework.springpetclinic.services.map;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.springframework.stereotype.Service;
+
 
 public abstract class AbstractMapService<T, ID> {
 	
