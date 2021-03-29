@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class Owner extends Person {
 
-	Set<Pet> pets;
+	private Set<Pet> pets;
 
 	public Set<Pet> getPets() {
 		return pets;
