@@ -11,16 +11,19 @@ public class OwnerController {
 
 	private OwnerService OwnerService;
 	
-	
 	public OwnerController(OwnerService ownerService) {
 		OwnerService = ownerService;
 	}
 
-
 	@RequestMapping({"","/","/index","/index.html"})
-	public String listVets(Model model) {
-		
+	public String listVets(Model model) {	
 		model.addAttribute("owners", OwnerService.findAll());
 		return "owners/index";
+	}
+	
+	@RequestMapping("/find")
+	public String findOwners() {
+		
+		return "notimplemented";
 	}
 }
