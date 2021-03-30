@@ -3,15 +3,35 @@ package org.springframework.springpetclinic.services.map;
 import java.util.Set;
 
 import org.springframework.springpetclinic.model.Vet;
+import org.springframework.springpetclinic.services.SpecialityService;
 import org.springframework.springpetclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
+	private final SpecialityService specialityService;
+	
+	public VetServiceMap(SpecialityService specialityService) {
+		this.specialityService = specialityService;
+	}
+
 	@Override
 	public Vet save(Vet object) {
-		return super.save(object);
+		
+		if(object != null) {
+			if(object.getSpecialities().size() > 0) {
+				object.getSpecialities().forEach(spec -> {
+					if(spec.getId() == null) {
+						specialityService.save(spec);
+					}
+				});
+			}
+			
+			return super.save(object);
+		}
+		else
+			return null;
 	}
 
 	@Override
