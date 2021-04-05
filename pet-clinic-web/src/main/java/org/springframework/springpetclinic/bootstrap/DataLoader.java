@@ -8,10 +8,12 @@ import org.springframework.springpetclinic.model.Pet;
 import org.springframework.springpetclinic.model.PetType;
 import org.springframework.springpetclinic.model.Speciality;
 import org.springframework.springpetclinic.model.Vet;
+import org.springframework.springpetclinic.model.Visit;
 import org.springframework.springpetclinic.services.OwnerService;
 import org.springframework.springpetclinic.services.PetTypeService;
 import org.springframework.springpetclinic.services.SpecialityService;
 import org.springframework.springpetclinic.services.VetService;
+import org.springframework.springpetclinic.services.VisitService;
 import org.springframework.stereotype.Component;
 
 
@@ -22,13 +24,16 @@ public class DataLoader implements CommandLineRunner {
 	private final VetService vetService;
 	private final PetTypeService petTypeService;
 	private final SpecialityService specialityService;
+	private final VisitService visitService;
 	
-	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+	public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, 
+			SpecialityService specialityService, VisitService visitService) {
 		super();
 		this.ownerService = ownerService;
 		this.vetService = vetService;
 		this.petTypeService = petTypeService;
 		this.specialityService = specialityService;
+		this.visitService = visitService;
 	}
 
 
@@ -94,10 +99,19 @@ public class DataLoader implements CommandLineRunner {
 		levisPet.setBirthDate(LocalDate.now());
 		levisPet.setPetType(savedCatPetType);
 		
-		owner1.getPets().add(levisPet);				
+		owner2.getPets().add(levisPet);				
 		ownerService.save(owner2);
 		
 		System.out.println("Loaded owner...");
+
+		Visit catVisit = new Visit();
+		catVisit.setPet(levisPet);
+		catVisit.setLocalDate(LocalDate.now());
+		catVisit.setDescription("Sneezy kitty");
+		
+		visitService.save(catVisit);
+		
+		System.out.println("Loaded visit...");
 		
 		Vet vet1 = new Vet();
 		vet1.setFirstName("Erwin");
@@ -106,7 +120,7 @@ public class DataLoader implements CommandLineRunner {
 		vet1.getSpecialities().add(savedRadiology);
 		
 		vetService.save(vet1);
-		
+			
 		Vet vet2 = new Vet();
 		vet2.setFirstName("Mikasa");
 		vet2.setLastName("Ackerman");
